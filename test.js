@@ -8,7 +8,7 @@ const cheerio = require('cheerio');
 var resp;
 module.exports = {
     getLinks: async function () {
-        await request({uri: 'https://google.co.in'}, (error, response, body) => {
+        await request({uri: 'https://www.safaribooksonline.com/library/view/beginning-object-oriented-programming/9781789134445/'}, (error, response, body) => {
             if (error) {
                 console.log(error);
             }
