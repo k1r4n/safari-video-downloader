@@ -18,21 +18,21 @@ module.exports = {
                 }
                 const link = require('../link');
                 const chapters = Object.keys(link);
-                for (let chapter of chapters) {
+                for (const chapter of chapters) {
                     if (link.hasOwnProperty(chapter)) {
-                        if (!fs.existsSync(`${config.location}/${chapter}`)) {
-                            logger.info(`Creating chapter folder: ${chapter}`);
-                            fs.mkdirSync(`${config.location}/${chapter}`);
+                        if (!fs.existsSync(`${config.location}/${chapter.replace(/\//g, "-")}`)) {
+                            logger.info(`Creating chapter folder: ${chapter.replace(/\//g, "-")}`);
+                            fs.mkdirSync(`${config.location}/${chapter.replace(/\//g, "-")}`);
                         }
                         const modules = Object.keys(link[chapter]);
-                        for (let module of modules) {
+                        for (const module of modules) {
                             const options = {
-                                currentChapter: chapter,
+                                currentChapter: chapter.replace(/\//g, "-"),
                                 index: Object.keys(link[chapter]).indexOf(module),
                                 link: link[chapter][module],
                                 module: module,
                             };
-                            if (!fs.existsSync(`${config.location}/${chapter}/${options.index}-${options.module.replace(/_/g," ")}.mp4`)) {
+                            if (!fs.existsSync(`${config.location}/${chapter.replace(/\//g, "-")}/${options.index}-${options.module.replace(/_/g," ")}.mp4`)) {
                                 await downloader.downloadVideo(options);
                             }
                         }

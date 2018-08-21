@@ -9,7 +9,8 @@ module.exports = {
         const logger = winston.getClient();
         return new Promise(async function (resolve, reject) {
             try {
-                await exec(`cd ${config.location}/${options.currentChapter} && youtube-dl -u ${config.username} -p ${config.password} -o "${options.index}-%(title)s.%(ext)s" ${options.link}`, (err, stdout, stderr) => {
+                logger.info(`Downloading ${options.module}`)
+                await exec(`cd "${config.location}/${options.currentChapter}" && youtube-dl -u ${config.username} -p ${config.password} -o "${options.index}-%(title)s.%(ext)s" ${options.link}`, (err, stdout, stderr) => {
                     if (err) {
                         logger.error(err);
                         process.exit(1);

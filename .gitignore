@@ -1,2 +1,5 @@
 node_modules
 config/local_config.env
+link.js
+test-index.js
+test.js
